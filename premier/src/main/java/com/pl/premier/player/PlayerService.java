@@ -37,7 +37,9 @@ public class PlayerService {
                 .collect(Collectors.toList());
     }
     public List<Player>getPlayerByPositionAndTeam(String position, String teamName) {
-        return playerRespository.findAll()
+        return playerRespository.findAll().stream()
+                .filter(player -> teamName.equals(player.getTeam() && position.equals(player.getPosition())))
+                .collect(Collectors.toList());
     }
 
 }
