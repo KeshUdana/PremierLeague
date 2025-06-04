@@ -58,4 +58,10 @@ public class Player {
     public String getTeam(){
         return team;
     }
+    public String getPosition(){
+        return position;
+    }
+    public String getNationality(){
+        return nationality;
+    }
 }
