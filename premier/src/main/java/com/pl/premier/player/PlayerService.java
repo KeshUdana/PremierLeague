@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -36,10 +37,21 @@ public class PlayerService {
                 .filter(player -> player.getNationality().toLowerCase().contains(searchText.toLowerCase()))
                 .collect(Collectors.toList());
     }
-    public List<Player>getPlayerByPositionAndTeam(String position, String teamName) {
+    public List<Player> getPlayerByPositionAndTeam(String position, String teamName) {
         return playerRespository.findAll().stream()
-                .filter(player -> teamName.equals(player.getTeam() && position.equals(player.getPosition())))
+                .filter(player -> teamName.equals(player.getTeam()) && position.equals(player.getPosition()))
                 .collect(Collectors.toList());
+    }
+    public Player addPlayer(Player player) {
+        playerRespository.save(player);
+        return player;
+    }
+    public Player updatePlayer(Player player) {
+        Optional<Player> existingPlayer=playerRespository.findByPlayerName(updatedPlayer.getPlayerName());
+        if (existingPlayer.isPresent()) {
+            Player playerToUpdate = existingPlayer.get();
+            playerToUpdate.setPlayerName(updatedPlayer.getName());
+        }
     }
 
 }
