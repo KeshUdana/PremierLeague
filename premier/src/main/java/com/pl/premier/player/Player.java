@@ -58,6 +58,10 @@ public class Player {
     public String getTeam(){
         return team;
     }
+    public void setTeam(String team) {this.team = team;}
+    public void setNationality(String nationality) {this.nationality = nationality;}
+    public void setPosition(String position) {this.position = position;}
+
     public String getPosition(){
         return position;
     }
